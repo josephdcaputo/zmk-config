@@ -1,1 +1,8 @@
 **/.DS_Store
+**/*.uf2
+**/*.log
+build/
+zmk/
+modules/
+zephyr/
+.west/
