@@ -1,3 +1,4 @@
+// vim: set ft=c:
 /*
  * Copyright (c) 2020 The ZMK Contributors
  *
@@ -99,7 +100,7 @@
             // |  Q  |  W  |  E  |  R  |  T   |   |  Y  |  U   |  I  |  O  |  P  |
             // |  A  |  S  |  D  |  F  |  G   |   |  H  |  J   |  K  |  L  |  ;  |
             // |  Z  |  X  |  C  |  V  |  B   |   |  N  |  M   |  ,  |  .  |  /  |
-            //             | GUI | NAV | TAB  |   | SPC | SYM  | ALT |
+            //             | GUI | NAV | RET  |   | SPC | SYM  | ALT |
 
             bindings = <
                 &kp Q           &kp W           &kp E           &kp R           &kp T           &kp Y               &kp U           &kp I           &kp O           &kp P
@@ -115,15 +116,15 @@
 
         nav_layer {
             // -----------------------------------------------------------------------------------------
-            // |  `   |      | ESC  |  ~   |     |   | TAB  | HOME |  UP  | END   | DEL  |
-            // | BSPC | PGDN | PGUP | CTRL | NUM |   | LEFT | DOWN |  UP  | RIGHT | BKSP |
-            // | BT2  |      |      |      |     |   |  \   | ENT  |      |       |  \   |
-            //               | GUI  |      |     |   |      |      |      |
+            // |  `   |      | ESC  |  ~   |     |   | TAB  | HOME |  UP  | END   | BKSP |
+            // | BSPC | PGDN | PGUP | CTRL | NUM |   | LEFT | DOWN |  UP  | RIGHT | ENTR |
+            // |      |      |      |      |     |   |  \   |      |      |       |  \   |
+            //               |      |      |     |   |      |      |      |
             bindings = <
-                &kp GRAVE    &trans      &kp ESC        &kp TILDE       &trans     &kp TAB      &kp HOME        &caps_word &kp END   &kp BSPC
+                &kp GRAVE    &none       &kp ESC        &kp TILDE       &none      &kp TAB      &kp HOME        &caps_word &kp END   &kp BSPC
                 &kp BSPC     &kp PG_UP   &kp PG_DN      &kp DEL         &mo NUM    &kp LEFT     &kp DOWN        &kp UP     &kp RIGHT &kp RET
-                &trans       &trans      &trans         &trans          &trans     &kp BSLH     &trans          &trans     &trans    &kp BSLH
-                                         &trans         &trans          &trans     &kp TAB      &trans          &trans
+                &none        &none       &none          &none           &none      &kp BSLH     &none           &none      &none     &kp BSLH
+                                         &none          &none           &none      &kp TAB      &none           &none 
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
@@ -157,10 +158,10 @@
             //  |      |     |     |     |     |   |  C  |  1  |  2  |  3  |  F  |
             //               |     |     |     |   |  0  |  .  |     |
             bindings = <
-                &bt BT_CLR      &bt BT_PRV      &bt BT_NXT      &bootloader     &trans          &kp A         &kp N7  &kp N8 &kp N9 &kp D
-                &kp LGUI        &kp LALT        &kp LCTRL       &kp LSHFT       &trans          &kp B         &kp N4  &kp N5 &kp N6 &kp E
+                &bt BT_CLR      &bt BT_PRV      &bt BT_NXT      &none           &kp C_MUTE      &kp A         &kp N7  &kp N8 &kp N9 &kp D
+                &kp C_PREV      &kp C_VOL_DN    &kp C_PP        &kp C_VOL_UP    &kp C_NEXT      &kp B         &kp N4  &kp N5 &kp N6 &kp E
                 &bt BT_SEL 0    &bt BT_SEL 1    &bt BT_SEL 2    &bt BT_SEL 3    &bt BT_SEL 4    &kp C         &kp N1  &kp N2 &kp N3 &kp F
-                                                &trans          &trans          &trans          &kp N0        &kp DOT &bootloader
+                                                &bootloader     &none           &none           &kp N0        &kp DOT &bootloader
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
@@ -170,14 +171,14 @@
         gaming_layer {
             // -----------------------------------------------------------------------------------------
             // | ESC |  1  |  2  |  3  |  4  |   |  ^  |  &  |  *  |  (  |  )  |
-            // |     |     |     |  [  |  (  |   |  -  |  =  |  {  |  }  | "|" |
-            // |     |     |     |  ]  |  )  |   |  _  |  +  |  [  |  ]  |  \  |
-            //             | GUI |     | SPC |   | ENT |     | ALT |
+            // | TAB |  Q  |  W  |  E  |  R  |   |  -  |  =  |  {  |  }  | "|" |
+            // |     |  A  |  S  |  D  |  F  |   |  _  |  +  |  [  |  ]  |  \  |
+            //             |  G  |  C  | SPC |   | L0  |     | ALT |
             bindings = <
                 &kp ESC   &kp N1    &kp N2    &kp N3    &kp N4      &kp CARET &kp AMPS  &kp STAR        &kp LPAR &kp RPAR
                 &kp TAB   &kp Q     &kp W     &kp E     &kp R       &kp DQT   &kp UNDER &kp EQUAL       &kp DQT  &kp SQT 
-                &kp LSHFT &kp A     &kp S     &kp D     &kp F       &kp SQT   &kp PLUS  &kp MINUS       &kp PIPE &trans  
-                                    &kp G     &kp C     &kp SPACE   &to BASE  &trans    &trans  
+                &kp LSHFT &kp A     &kp S     &kp D     &kp F       &kp SQT   &kp PLUS  &kp MINUS       &kp PIPE &none   
+                                    &kp G     &kp C     &kp SPACE   &to BASE  &none     &none   
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;

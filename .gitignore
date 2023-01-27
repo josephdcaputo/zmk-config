@@ -8,3 +8,4 @@ tools/
 bootloader/
 zephyr/
 .west/
+__init_done__
