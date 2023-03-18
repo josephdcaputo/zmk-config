@@ -1,11 +1,11 @@
 #-------------------------------------------------------------------------------
-#	Variables
-#-------------------------------------------------------------------------------
-KEYMAP_FILE = config/microdox.keymap
 RIGHT_UF2 = build/right/zephyr/zmk.uf2
 LEFT_UF2 = build/left/zephyr/zmk.uf2
 
 BUILD_DIRS = modules bootloader tools zephyr
+
+# KEEB = microdox_v2
+KEEB = corne
 
 PWD = $(shell pwd)
 
@@ -39,9 +39,9 @@ build_left: $(KEYMAP_FILE)
 		-b nice_nano_v2 \
 		-d build/left \
 		-- -DZMK_CONFIG=${PWD}/config \
-		-DSHIELD=microdox_v2_left
+		-DSHIELD=$(KEEB)_left
 
-	cp $(LEFT_UF2) left.uf2
+	cp $(LEFT_UF2) $(KEEB)_left.uf2
 
 build_right: $(KEYMAP_FILE)
 	west build \
@@ -49,6 +49,6 @@ build_right: $(KEYMAP_FILE)
 		-b nice_nano_v2 \
 		-d build/right \
 		-- -DZMK_CONFIG=${PWD}/config \
-		-DSHIELD=microdox_v2_right
+		-DSHIELD=$(KEEB)_right
 
-	cp $(RIGHT_UF2) right.uf2
+	cp $(RIGHT_UF2) $(KEEB)_right.uf2
